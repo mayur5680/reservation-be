@@ -13,19 +13,7 @@ export const smtp = {
     "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",
 };
 
-export const sendinblue = {
-  api: "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",
-};
 
-export const mailchimp = {
-  host: "smtp.mandrillapp.com",
-  port: 587,
-  secure: false, // true for 465, false for other ports
-  auth: {
-    user: "marketing@createries.com", // generated ethereal user
-    pass: "md-I3NuVQPK9MBqKUMltvRjng", // generated ethereal password
-  },
-};
 
 export const imageLocation = {
   itemFilePath: "/home/creat/ReservationImages/item/",
