@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "creat",
+    "password": "Creat#123q",
+    "database": "creat",
+    "host": "103.80.131.2",
+    "dialect": "postgres",
+    "logging": true
+  },
+  "local": {
+    "username": "root",
+    "password": 1234,
+    "database": "creat",
+    "host": "localhost",
+    "dialect": "postgres",
+    "logging": true
+  },
+  "production": {
+    "username": "creatsg",
+    "password": "CreatSg12o",
+    "database": "creatsg",
+    "host": "localhost",
+    "dialect": "postgres",
+    "logging": true
+  }
+}

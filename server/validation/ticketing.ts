@@ -1,0 +1,32 @@
+export const CreateTicketingPayload = {
+  name: "string",
+  startDate: "string",
+  endDate: "string",
+  openingTime: "string",
+  closingTime: "string",
+  timeSlotInterval: "string",
+  amount: "string",
+  noOfPerson: "string",
+  ticketMaxQuantity: "string",
+  blockSchedule: "string",
+  blockTable: "string",
+  prePayment: "string",
+  image: "string",
+};
+
+export const UpdateTicketingPayload = {
+  name: "string",
+  startDate: "string",
+  endDate: "string",
+  openingTime: "string",
+  closingTime: "string",
+  timeSlotInterval: "string",
+  amount: "string",
+  noOfPerson: "string",
+  ticketMaxQuantity: "string",
+  blockSchedule: "string",
+  blockTable: "string",
+  prePayment: "string",
+  image: "string",
+  isActive: "string",
+};

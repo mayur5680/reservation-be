@@ -1,0 +1,7582 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "All apis here",
+    "version": "1.0.0",
+    "title": "Reservation apis",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": ""
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "https://api.creat.sg",
+  "basePath": "/api",
+  "tags": [
+    { "name": "Auth" },
+    { "name": "Outlet" },
+    { "name": "User" },
+    { "name": "Role" },
+    { "name": "SystemLog" },
+    { "name": "OutletNotes" },
+    { "name": "Tag" },
+    { "name": "Section" },
+    { "name": "MealTiming" },
+    { "name": "MealTimingOverride" },
+    { "name": "PreOrderItem" },
+    { "name": "Floor" },
+    { "name": "SeatingType" },
+    { "name": "SeatType" },
+    { "name": "OutletBasicInfo" },
+    { "name": "Table" },
+    { "name": "OutletSeatingType" },
+    { "name": "OutletTable" },
+    { "name": "Reservation" },
+    { "name": "OutletGroupTable" },
+    { "name": "GroupTable" },
+    { "name": "TableSection" },
+    { "name": "Company" },
+    { "name": "Invoice" },
+    { "name": "Customer" },
+    { "name": "TagCategory" },
+    { "name": "ListingView" },
+    { "name": "Common" },
+    { "name": "SeatingView" },
+    { "name": "Coupon" },
+    { "name": "Materials" },
+    { "name": "Category" },
+    { "name": "SubCategory" },
+    { "name": "DiningOption" },
+    { "name": "EmailTemplate" },
+    { "name": "Ticketing" },
+    { "name": "TicketingBooking" },
+    { "name": "SMSTemplate" },
+    { "name": "IVRS" },
+    { "name": "Marketing" },
+    { "name": "Timeline" },
+    { "name": "UserPermission" },
+    { "name": "AutoTagging" },
+    { "name": "Report" }
+  ],
+  "schemes": ["http"],
+
+  "paths": {
+    "/Auth": {
+      "post": {
+        "tags": ["Auth"],
+        "description": "User Login",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userName": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              },
+              "required": ["userName", "password"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login Successfull"
+          }
+        }
+      }
+    },
+    "/Auth/forgetPassword": {
+      "post": {
+        "tags": ["Auth"],
+        "description": "Forget Password",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userName": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
+              },
+              "required": ["userName", "type"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Verify Code"
+          }
+        }
+      }
+    },
+    "/Auth/verifycode": {
+      "put": {
+        "tags": ["Auth"],
+        "description": "Verify Code",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "verificationToken": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": ["verificationToken", "code"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Verify Code "
+          }
+        }
+      }
+    },
+    "/Auth/resetpassword": {
+      "put": {
+        "tags": ["Auth"],
+        "description": "Reset Your Password",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "password": {
+                  "type": "string"
+                },
+                "confirmPassword": {
+                  "type": "string"
+                }
+              },
+              "required": ["password", "confirmPassword"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reset Password"
+          }
+        }
+      }
+    },
+
+    "/outlet": {
+      "get": {
+        "tags": ["Outlet"],
+        "description": "Get All Outlet",
+        "responses": {
+          "200": {
+            "description": "Returns all Outlet"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Outlet"],
+        "description": "Update Outlet",
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "name."
+          },
+          {
+            "in": "formData",
+            "name": "companyId",
+            "type": "string",
+            "required": true,
+            "description": "companyId."
+          },
+          {
+            "in": "formData",
+            "name": "address1",
+            "type": "string",
+            "required": true,
+            "description": "address1."
+          },
+          {
+            "in": "formData",
+            "name": "postcode",
+            "type": "string",
+            "required": true,
+            "description": "postcode."
+          },
+          {
+            "in": "formData",
+            "name": "latitude",
+            "type": "string",
+            "required": true,
+            "description": "latitude."
+          },
+          {
+            "in": "formData",
+            "name": "longitude",
+            "type": "string",
+            "required": true,
+            "description": "longitude."
+          },
+          {
+            "in": "formData",
+            "name": "phone",
+            "type": "string",
+            "required": true,
+            "description": "phone."
+          },
+          {
+            "in": "formData",
+            "name": "email",
+            "type": "string",
+            "required": true,
+            "description": "email."
+          },
+          {
+            "in": "formData",
+            "name": "googlePlaceId",
+            "type": "string",
+            "required": true,
+            "description": "googlePlaceId."
+          },
+          {
+            "in": "formData",
+            "name": "gst",
+            "type": "string",
+            "required": true,
+            "description": "gst."
+          },
+          {
+            "in": "formData",
+            "name": "rebookingTableInterval",
+            "type": "string",
+            "required": true,
+            "description": "rebookingTableInterval."
+          },
+          {
+            "in": "formData",
+            "name": "timezone",
+            "type": "string",
+            "required": true,
+            "description": "timezone."
+          },
+          {
+            "in": "formData",
+            "name": "allowOrder",
+            "type": "string",
+            "required": true,
+            "description": "allowOrder."
+          },
+          {
+            "in": "formData",
+            "name": "allowBooking",
+            "type": "string",
+            "required": true,
+            "description": "allowBooking."
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "type": "string",
+            "required": true,
+            "description": "description."
+          },
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "file",
+            "required": true,
+            "description": "image."
+          },
+          {
+            "in": "formData",
+            "name": "paxSpacing",
+            "type": "string",
+            "required": true,
+            "description": "paxSpacing."
+          },
+          {
+            "in": "formData",
+            "name": "timeSlotInterval",
+            "type": "string",
+            "required": true,
+            "description": "timeSlotInterval."
+          },
+          {
+            "in": "formData",
+            "name": "ivrsPhoneNo",
+            "type": "string",
+            "required": true,
+            "description": "ivrsPhoneNo."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Outlet"
+          }
+        }
+      }
+    },
+    "/outlet/{id}": {
+      "put": {
+        "tags": ["Outlet"],
+        "description": "Update Outlet",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "ID of the Outlet",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "name."
+          },
+          {
+            "in": "formData",
+            "name": "companyId",
+            "type": "string",
+            "required": true,
+            "description": "companyId."
+          },
+          {
+            "in": "formData",
+            "name": "address1",
+            "type": "string",
+            "required": true,
+            "description": "address1."
+          },
+          {
+            "in": "formData",
+            "name": "postcode",
+            "type": "string",
+            "required": true,
+            "description": "postcode."
+          },
+          {
+            "in": "formData",
+            "name": "latitude",
+            "type": "string",
+            "required": true,
+            "description": "latitude."
+          },
+          {
+            "in": "formData",
+            "name": "longitude",
+            "type": "string",
+            "required": true,
+            "description": "longitude."
+          },
+          {
+            "in": "formData",
+            "name": "phone",
+            "type": "string",
+            "required": true,
+            "description": "phone."
+          },
+          {
+            "in": "formData",
+            "name": "email",
+            "type": "string",
+            "required": true,
+            "description": "email."
+          },
+          {
+            "in": "formData",
+            "name": "googlePlaceId",
+            "type": "string",
+            "required": true,
+            "description": "googlePlaceId."
+          },
+          {
+            "in": "formData",
+            "name": "gst",
+            "type": "string",
+            "required": true,
+            "description": "gst."
+          },
+          {
+            "in": "formData",
+            "name": "rebookingTableInterval",
+            "type": "string",
+            "required": true,
+            "description": "rebookingTableInterval."
+          },
+          {
+            "in": "formData",
+            "name": "timezone",
+            "type": "string",
+            "required": true,
+            "description": "timezone."
+          },
+          {
+            "in": "formData",
+            "name": "allowOrder",
+            "type": "string",
+            "required": true,
+            "description": "allowOrder."
+          },
+          {
+            "in": "formData",
+            "name": "allowBooking",
+            "type": "string",
+            "required": true,
+            "description": "allowBooking."
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "type": "string",
+            "required": true,
+            "description": "description."
+          },
+          {
+            "in": "formData",
+            "name": "isActive",
+            "type": "boolean",
+            "required": true,
+            "description": "isActive."
+          },
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "file",
+            "required": true,
+            "description": "image."
+          },
+          {
+            "in": "formData",
+            "name": "paxSpacing",
+            "type": "string",
+            "required": true,
+            "description": "paxSpacing."
+          },
+          {
+            "in": "formData",
+            "name": "timeSlotInterval",
+            "type": "string",
+            "required": true,
+            "description": "timeSlotInterval."
+          },
+          {
+            "in": "formData",
+            "name": "ivrsPhoneNo",
+            "type": "string",
+            "required": true,
+            "description": "ivrsPhoneNo."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Outlet"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Outlet"],
+        "description": "delete existing Outlet",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "ID of the Outlet",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return Deleted Outlet"
+          }
+        }
+      }
+    },
+
+    "/User": {
+      "post": {
+        "tags": ["User"],
+        "description": "Create New User",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "roleId": {
+                  "type": "number"
+                },
+                "outletId": {
+                  "type": "number"
+                },
+                "permission": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "moduleName": {
+                        "type": "string"
+                      },
+                      "isCreate": {
+                        "type": "boolean"
+                      },
+                      "isRead": {
+                        "type": "boolean"
+                      },
+                      "isUpdate": {
+                        "type": "boolean"
+                      },
+                      "isDelete": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              },
+              "required": ["email", "roleId", "outletId"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create User"
+          }
+        }
+      }
+    },
+    "/User/Outlet/{id}": {
+      "get": {
+        "tags": ["User"],
+        "description": "Get User ByOutlet Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "ID of the User",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return single User"
+          }
+        }
+      }
+    },
+    "/User/Company/{id}": {
+      "get": {
+        "tags": ["User"],
+        "description": "Get User By company Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "ID of the User",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return single User"
+          }
+        }
+      }
+    },
+    "/User/{UserId}/outlet/{Id}": {
+      "put": {
+        "tags": ["User"],
+        "description": "Update user",
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "path",
+            "type": "string",
+            "description": "User Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "ID of the User",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "roleId": {
+                  "type": "number"
+                },
+                "isActive": {
+                  "type": "boolean"
+                },
+                "companyPermission": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "permission": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "moduleName": {
+                            "type": "string"
+                          },
+                          "isCreate": {
+                            "type": "boolean"
+                          },
+                          "isRead": {
+                            "type": "boolean"
+                          },
+                          "isUpdate": {
+                            "type": "boolean"
+                          },
+                          "isDelete": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "required": ["firstName", "lastName", "email", "phone"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update user"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["User"],
+        "description": "Dalete user",
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "path",
+            "type": "string",
+            "description": "User Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "ID of the User",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dalete user"
+          }
+        }
+      }
+    },
+    "/User/superAdmin": {
+      "post": {
+        "tags": ["User"],
+        "description": "Create SuperAdmin",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                }
+              },
+              "required": ["email"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create SuperAdmin"
+          }
+        }
+      },
+      "get": {
+        "tags": ["User"],
+        "description": "Get All SuperAdmin",
+        "responses": {
+          "200": {
+            "description": "Get All SuperAdmin"
+          }
+        }
+      }
+    },
+    "/User/superAdmin/{id}": {
+      "put": {
+        "tags": ["User"],
+        "description": "Update SuperAdmin",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "ID of the User",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "number"
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "firstName",
+                "lastName",
+                "email",
+                "phone",
+                "isActive"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return single User"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["User"],
+        "description": "delete existing User",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "ID of the User",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return Deleted User"
+          }
+        }
+      }
+    },
+
+    "/role/outlet/{id}": {
+      "post": {
+        "tags": ["Role"],
+        "description": "Create New Role",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "OutletID of the Role",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": ["name"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create New Role"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Role"],
+        "description": "Get All Roles",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Get All Roles",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Roles"
+          }
+        }
+      }
+    },
+    "/role/{id}": {
+      "get": {
+        "tags": ["Role"],
+        "description": "Get Role By Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Role By Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Role By Id"
+          }
+        }
+      }
+    },
+    "/role/{roleId}/outlet/{id}": {
+      "put": {
+        "tags": ["Role"],
+        "description": "Update Role By Id",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "type": "string",
+            "description": "Role Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              },
+              "required": ["name"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Role By Id"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Role"],
+        "description": "Delete Role By Id",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "type": "string",
+            "description": "Role Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Role By Id"
+          }
+        }
+      }
+    },
+
+    "/systemLog/outlet/{id}": {
+      "post": {
+        "tags": ["SystemLog"],
+        "description": "System log By Outlet Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "System Log Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "System Log By Outlet Id"
+          }
+        }
+      }
+    },
+
+    "/outletNote/outlet/{id}": {
+      "post": {
+        "tags": ["OutletNotes"],
+        "description": "Create Note By Outlet Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string"
+                },
+                "noteLevel": {
+                  "type": "string"
+                }
+              },
+              "required": ["description", "noteLevel"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Note"
+          }
+        }
+      }
+    },
+    "/outletNote/filter/outlet/{id}": {
+      "post": {
+        "tags": ["OutletNotes"],
+        "description": "Get All Notes By Outlet Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "fromDate": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "toDate": {
+                  "type": "string",
+                  "format": "date"
+                }
+              },
+              "required": []
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Notes"
+          }
+        }
+      }
+    },
+    "/outletNote/{outletNoteId}/outlet/{id}": {
+      "put": {
+        "tags": ["OutletNotes"],
+        "description": "Update Note",
+        "parameters": [
+          {
+            "name": "outletNoteId",
+            "in": "path",
+            "type": "string",
+            "description": "OutletNotes Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string"
+                },
+                "noteLevel": {
+                  "type": "string"
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              },
+              "required": ["description", "noteLevel"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Note"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["OutletNotes"],
+        "description": "Delete OutletNotes",
+        "parameters": [
+          {
+            "name": "outletNoteId",
+            "in": "path",
+            "type": "string",
+            "description": "OutletNotes Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete OutletNotes"
+          }
+        }
+      }
+    },
+
+    "/tag/outlet/{id}": {
+      "post": {
+        "tags": ["Tag"],
+        "description": "Create Tag",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "tagCategoryId": {
+                  "type": "boolean"
+                }
+              },
+              "required": ["name", "tagCategoryId"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Tag"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Tag"],
+        "description": "Get All Tags",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Tags"
+          }
+        }
+      }
+    },
+    "/tag/tagCategory/{id}": {
+      "get": {
+        "tags": ["Tag"],
+        "description": "Get All Tags By TagCategoryId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "TagCategory Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Tags By TagCategoryId"
+          }
+        }
+      }
+    },
+    "/tag/tagCategory/null/{id}/null": {
+      "get": {
+        "tags": ["Tag"],
+        "description": "Get All Tags By TagCategoryId and OutletId/CompanyId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "OutletId/Company Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Tags By TagCategoryId and OutletId/CompanyId"
+          }
+        }
+      }
+    },
+    "/tag/{tagId}/outlet/{id}": {
+      "put": {
+        "tags": ["Tag"],
+        "description": "Update Tag",
+        "parameters": [
+          {
+            "name": "tagId",
+            "in": "path",
+            "type": "string",
+            "description": "Tag Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "tagCategoryId": {
+                  "type": "number"
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              },
+              "required": ["name", "tagCategoryId", "isActive"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Tag"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Tag"],
+        "description": "Delete Tag",
+        "parameters": [
+          {
+            "name": "tagId",
+            "in": "path",
+            "type": "string",
+            "description": "Tag Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Tag"
+          }
+        }
+      }
+    },
+
+    "/section/outlet/{id}": {
+      "post": {
+        "tags": ["Section"],
+        "description": "Create Section",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": ["name"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Section"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Section"],
+        "description": "Get All Section",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Section"
+          }
+        }
+      }
+    },
+    "/section/{sectionId}/outlet/{id}": {
+      "put": {
+        "tags": ["Section"],
+        "description": "Update Section",
+        "parameters": [
+          {
+            "name": "sectionId",
+            "in": "path",
+            "type": "string",
+            "description": "Section Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              },
+              "required": ["name", "isActive"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Section"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Section"],
+        "description": "Delete Section",
+        "parameters": [
+          {
+            "name": "sectionId",
+            "in": "path",
+            "type": "string",
+            "description": "Section Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Section"
+          }
+        }
+      }
+    },
+    "/section/company": {
+      "post": {
+        "tags": ["Section"],
+        "description": "Get All Sections By Company Id",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "companyIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              },
+              "required": ["companyIds"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Sections By Company Id"
+          }
+        }
+      }
+    },
+
+    "/timeslot/outlet/{id}": {
+      "post": {
+        "tags": ["MealTiming"],
+        "description": "Create Meal Timeslot",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sectionId": {
+                  "type": "number"
+                },
+                "dayofweek": {
+                  "type": "number"
+                },
+                "openingTime": {
+                  "type": "string"
+                },
+                "closingTime": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sectionId",
+                "dayofweek",
+                "openingTime",
+                "closingTime"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Meal Timeslot"
+          }
+        }
+      },
+      "get": {
+        "tags": ["MealTiming"],
+        "description": "Get AllTimeSlot",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get AllTimeSlot"
+          }
+        }
+      }
+    },
+    "/timeslot/{timeslotId}/outlet/{id}": {
+      "put": {
+        "tags": ["MealTiming"],
+        "description": "Update Meal TimeSlot",
+        "parameters": [
+          {
+            "name": "timeslotId",
+            "in": "path",
+            "type": "string",
+            "description": "TimeSlot Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sectionId": {
+                  "type": "number"
+                },
+                "dayofweek": {
+                  "type": "number"
+                },
+                "openingTime": {
+                  "type": "string"
+                },
+                "closingTime": {
+                  "type": "string"
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "sectionId",
+                "dayofweek",
+                "openingTime",
+                "closingTime",
+                "isActive"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Meal TimeSlot"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["MealTiming"],
+        "description": "Delete Meal Time Slot",
+        "parameters": [
+          {
+            "name": "timeslotId",
+            "in": "path",
+            "type": "string",
+            "description": "TimeSlot Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Meal Time Slot"
+          }
+        }
+      }
+    },
+
+    "/timeslotoverride/outlet/{id}": {
+      "post": {
+        "tags": ["MealTimingOverride"],
+        "description": "Create Meal TimeSlotOverride",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sectionId": {
+                  "type": "number"
+                },
+                "dayofweek": {
+                  "type": "number"
+                },
+                "openingTime": {
+                  "type": "string"
+                },
+                "closingTime": {
+                  "type": "string"
+                },
+                "effectiveFrom": {
+                  "type": "string"
+                },
+                "effectiveTo": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string"
+                },
+                "outletStatus": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "sectionId",
+                "dayofweek",
+                "effectiveFrom",
+                "effectiveTo",
+                "reason",
+                "outletStatus"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Meal TimeSlotOverride"
+          }
+        }
+      },
+      "get": {
+        "tags": ["MealTimingOverride"],
+        "description": "Get AllTimeSlotOverride",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get AllTimeSlotOverride"
+          }
+        }
+      }
+    },
+    "/timeslotoverride/{timeslotoverrideId}/outlet/{id}": {
+      "put": {
+        "tags": ["MealTimingOverride"],
+        "description": "Update Meal TimeSlotOverride",
+        "parameters": [
+          {
+            "name": "timeslotoverrideId",
+            "in": "path",
+            "type": "string",
+            "description": "Timeslotoverride Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sectionId": {
+                  "type": "number"
+                },
+                "dayofweek": {
+                  "type": "number"
+                },
+                "openingTime": {
+                  "type": "string"
+                },
+                "closingTime": {
+                  "type": "string"
+                },
+                "effectiveFrom": {
+                  "type": "string"
+                },
+                "effectiveTo": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string"
+                },
+                "outletStatus": {
+                  "type": "boolean"
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "sectionId",
+                "dayofweek",
+                "effectiveFrom",
+                "effectiveTo",
+                "reason",
+                "outletStatus",
+                "isActive"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Meal TimeSlotOverride"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["MealTimingOverride"],
+        "description": "Delete Meal TimeSlot Override",
+        "parameters": [
+          {
+            "name": "timeslotoverrideId",
+            "in": "path",
+            "type": "string",
+            "description": "Timeslotoverride Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Meal TimeSlot Override"
+          }
+        }
+      }
+    },
+
+    "/preorderitem/outlet/{id}": {
+      "post": {
+        "tags": ["PreOrderItem"],
+        "description": "Create PreOrderItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "name."
+          },
+          {
+            "in": "formData",
+            "name": "sectionId",
+            "type": "string",
+            "required": true,
+            "description": "sectionId."
+          },
+          {
+            "in": "formData",
+            "name": "unitPrice",
+            "type": "string",
+            "required": true,
+            "description": "unitPrice."
+          },
+          {
+            "in": "formData",
+            "name": "dailyMaxQty",
+            "type": "string",
+            "required": true,
+            "description": "dailyMaxQty."
+          },
+          {
+            "in": "formData",
+            "name": "bookingMaxQty",
+            "type": "string",
+            "required": true,
+            "description": "bookingMaxQty."
+          },
+          {
+            "in": "formData",
+            "name": "maximumSpend",
+            "type": "string",
+            "required": true,
+            "description": "maximumSpend."
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "type": "string",
+            "required": true,
+            "description": "description."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create PreOrderItem"
+          }
+        }
+      },
+      "get": {
+        "tags": ["PreOrderItem"],
+        "description": "Get All PreOrderItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All PreOrderItem"
+          }
+        }
+      }
+    },
+    "/preorderitem/{preorderitemId}/outlet/{id}": {
+      "put": {
+        "tags": ["PreOrderItem"],
+        "description": "Update PreOrderItem",
+        "parameters": [
+          {
+            "name": "preorderitemId",
+            "in": "path",
+            "type": "string",
+            "description": "Preorderitem Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "file",
+            "required": true,
+            "description": "image."
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "name."
+          },
+          {
+            "in": "formData",
+            "name": "sectionId",
+            "type": "string",
+            "required": true,
+            "description": "sectionId."
+          },
+          {
+            "in": "formData",
+            "name": "unitPrice",
+            "type": "string",
+            "required": true,
+            "description": "unitPrice."
+          },
+          {
+            "in": "formData",
+            "name": "dailyMaxQty",
+            "type": "string",
+            "required": true,
+            "description": "dailyMaxQty."
+          },
+          {
+            "in": "formData",
+            "name": "bookingMaxQty",
+            "type": "string",
+            "required": true,
+            "description": "bookingMaxQty."
+          },
+          {
+            "in": "formData",
+            "name": "maximumSpend",
+            "type": "string",
+            "required": true,
+            "description": "maximumSpend."
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "type": "string",
+            "required": true,
+            "description": "description."
+          },
+          {
+            "in": "formData",
+            "name": "isActive",
+            "type": "boolean",
+            "required": true,
+            "description": "isActive"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update PreOrderItem"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["PreOrderItem"],
+        "description": "Delete PreOrderItem",
+        "parameters": [
+          {
+            "name": "preorderitemId",
+            "in": "path",
+            "type": "string",
+            "description": "Preorderitem Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete PreOrderItem"
+          }
+        }
+      }
+    },
+    "/preorderitem/company/{id}": {
+      "get": {
+        "tags": ["PreOrderItem"],
+        "description": "Get All PreOrder Item By Company Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "company Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All PreOrder Item By Company Id"
+          }
+        }
+      }
+    },
+
+    "/floor/outlet/{id}": {
+      "post": {
+        "tags": ["Floor"],
+        "description": "Create Floor",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "file",
+            "required": true,
+            "description": "image."
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "name."
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "type": "string",
+            "required": true,
+            "description": "description."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Floor"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Floor"],
+        "description": "Get All Floor",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Floor"
+          }
+        }
+      }
+    },
+    "/floor/{floorId}/outlet/{id}": {
+      "put": {
+        "tags": ["Floor"],
+        "description": "Update Floor",
+        "parameters": [
+          {
+            "name": "floorId",
+            "in": "path",
+            "type": "string",
+            "description": "Floor Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "isActive",
+            "type": "boolean",
+            "required": true,
+            "description": "isActive"
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "name."
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "type": "string",
+            "required": true,
+            "description": "description."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Floor"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Floor"],
+        "description": "Delete Floor",
+        "parameters": [
+          {
+            "name": "floorId",
+            "in": "path",
+            "type": "string",
+            "description": "Floor Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Floor"
+          }
+        }
+      }
+    },
+
+    "/seatingtype/outlet/{id}": {
+      "post": {
+        "tags": ["SeatingType"],
+        "description": "Create SeatingType",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": ["name"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create SeatingType"
+          }
+        }
+      },
+      "get": {
+        "tags": ["SeatingType"],
+        "description": "Get All SeatingType",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All SeatingType"
+          }
+        }
+      }
+    },
+    "/seatingtype/{seatingtypeId}/outlet/{id}": {
+      "put": {
+        "tags": ["SeatingType"],
+        "description": "Update SeatingType",
+        "parameters": [
+          {
+            "name": "seatingtypeId",
+            "in": "path",
+            "type": "string",
+            "description": "Seatingtype Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "isActive": {
+                  "type": "string"
+                }
+              },
+              "required": ["name"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update SeatingType"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["SeatingType"],
+        "description": "Delete SeatingType",
+        "parameters": [
+          {
+            "name": "seatingtypeId",
+            "in": "path",
+            "type": "string",
+            "description": "Seatingtype Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete SeatingType"
+          }
+        }
+      }
+    },
+
+    "/seattype/outlet/{id}": {
+      "post": {
+        "tags": ["SeatType"],
+        "description": "Create SeatType",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": ["name"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create SeatType"
+          }
+        }
+      },
+      "get": {
+        "tags": ["SeatType"],
+        "description": "Get All SeatType",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All SeatType"
+          }
+        }
+      }
+    },
+    "/seattype/{seattypeId}/outlet/{id}": {
+      "put": {
+        "tags": ["SeatType"],
+        "description": "Update SeatType",
+        "parameters": [
+          {
+            "name": "seattypeId",
+            "in": "path",
+            "type": "string",
+            "description": "SeatType Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "isActive": {
+                  "type": "string"
+                }
+              },
+              "required": ["name", "isActive"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update SeatType"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["SeatType"],
+        "description": "Delete SeatType",
+        "parameters": [
+          {
+            "name": "seattypeId",
+            "in": "path",
+            "type": "string",
+            "description": "SeatType Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete SeatType"
+          }
+        }
+      }
+    },
+
+    "/outletbasicinformation/outlet/{id}": {
+      "post": {
+        "tags": ["OutletBasicInfo"],
+        "description": "Creat Basic Info",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "seatingType": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "seatType": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              },
+              "required": ["seatingType", "seatType"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Creat Basic Info"
+          }
+        }
+      },
+      "get": {
+        "tags": ["OutletBasicInfo"],
+        "description": "Get Basic Info",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Basic Info"
+          }
+        }
+      },
+      "put": {
+        "tags": ["OutletBasicInfo"],
+        "description": "Update Basic Info",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "seatingType": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "seatType": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              },
+              "required": ["seatingType", "seatType"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Basic Info"
+          }
+        }
+      }
+    },
+
+    "/table/outlet/{id}": {
+      "post": {
+        "tags": ["Table"],
+        "description": "Create Table",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "noOfPerson": {
+                  "type": "number"
+                },
+                "shape": {
+                  "type": "string"
+                }
+              },
+              "required": ["name", "noOfPerson", "shape"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Table"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Table"],
+        "description": "Get All Table",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Table"
+          }
+        }
+      }
+    },
+    "/table/{tableId}/outlet/{id}": {
+      "put": {
+        "tags": ["Table"],
+        "description": "Update Table",
+        "parameters": [
+          {
+            "name": "tableId",
+            "in": "path",
+            "type": "string",
+            "description": "Table Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "noOfPerson": {
+                  "type": "number"
+                },
+                "shape": {
+                  "type": "string"
+                }
+              },
+              "required": ["name", "noOfPerson", "shape"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Table"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Table"],
+        "description": "Delete Table",
+        "parameters": [
+          {
+            "name": "tableId",
+            "in": "path",
+            "type": "string",
+            "description": "Table Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Table"
+          }
+        }
+      }
+    },
+
+    "/outletseatingtype/{id}": {
+      "put": {
+        "tags": ["OutletSeatingType"],
+        "description": "Update Image",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "outletSeatingType Id",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "file",
+            "required": true,
+            "description": "image."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Image"
+          }
+        }
+      }
+    },
+
+    "/outlettable/seatingtype/{id}": {
+      "post": {
+        "tags": ["OutletTable"],
+        "description": "Create OutletTable",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Seatingtype Id",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "name."
+          },
+          {
+            "in": "formData",
+            "name": "tableId",
+            "type": "string",
+            "required": true,
+            "description": "tableId."
+          },
+          {
+            "in": "formData",
+            "name": "xPosition",
+            "type": "string",
+            "required": true,
+            "description": "xPosition."
+          },
+          {
+            "in": "formData",
+            "name": "yPosition",
+            "type": "string",
+            "required": true,
+            "description": "yPosition."
+          },
+          {
+            "in": "formData",
+            "name": "outletSeatTypeId",
+            "type": "string",
+            "required": true,
+            "description": "outletSeatTypeId."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create OutletTable"
+          }
+        }
+      },
+      "get": {
+        "tags": ["OutletTable"],
+        "description": "Get OutletTable",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Seatingtype Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get OutletTable"
+          }
+        }
+      },
+      "put": {
+        "tags": ["OutletTable"],
+        "description": "Update OutletTable Position",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Seatingtype Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "outletTable": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "xPosition": {
+                        "type": "number"
+                      },
+                      "yPosition": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              },
+              "required": ["id", "xPosition", "yPosition"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get OutletTable"
+          }
+        }
+      }
+    },
+    "/outlettable/private/seatingtype/{id}": {
+      "get": {
+        "tags": ["OutletTable"],
+        "description": "Get OutletTable for Prvate",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Seatingtype Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get OutletTable for Prvate"
+          }
+        }
+      }
+    },
+    "/outlettable/{id}": {
+      "put": {
+        "tags": ["OutletTable"],
+        "description": "Update OutletTable",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "outlettable Id",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "name."
+          },
+          {
+            "in": "formData",
+            "name": "tableId",
+            "type": "string",
+            "required": true,
+            "description": "tableId."
+          },
+          {
+            "in": "formData",
+            "name": "xPosition",
+            "type": "string",
+            "required": true,
+            "description": "xPosition."
+          },
+          {
+            "in": "formData",
+            "name": "yPosition",
+            "type": "string",
+            "required": true,
+            "description": "yPosition."
+          },
+          {
+            "in": "formData",
+            "name": "outletSeatTypeId",
+            "type": "string",
+            "required": true,
+            "description": "outletSeatTypeId."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update OutletTable"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["OutletTable"],
+        "description": "Delete OutletTable",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "outlettable Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete OutletTable"
+          }
+        }
+      }
+    },
+
+    "/reservation/{id}": {
+      "post": {
+        "tags": ["Reservation"],
+        "description": "Get Oulet Information By id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "reservation Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "noOfPerson": {
+                  "type": "number"
+                },
+                "preferredTime": {
+                  "type": "string"
+                }
+              },
+              "required": ["date", "noOfPerson", "preferredTime"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Oulet Information By id"
+          }
+        }
+      }
+    },
+    "/reservation/step2/{id}": {
+      "post": {
+        "tags": ["Reservation"],
+        "description": "Step2  new EndPoint",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "step2 Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "noOfPerson": {
+                  "type": "number"
+                },
+                "preferredTime": {
+                  "type": "string"
+                },
+                "outletId": {
+                  "type": "number"
+                }
+              },
+              "required": ["date", "noOfPerson", "preferredTime"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Step2  new EndPoint"
+          }
+        }
+      }
+    },
+    "/reservation/step4/outlet/{id}": {
+      "post": {
+        "tags": ["Reservation"],
+        "description": "Step 4",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "exactTime": {
+                  "type": "string"
+                },
+                "noOfPerson": {
+                  "type": "number"
+                }
+              },
+              "required": ["date", "exactTime", "noOfPerson"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Step 4"
+          }
+        }
+      }
+    },
+    "/reservation/outlet/{id}/booking": {
+      "post": {
+        "tags": ["Reservation"],
+        "description": "Book Table",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "bookingType": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "noOfPerson": {
+                  "type": "number"
+                },
+                "preferredTime": {
+                  "type": "string"
+                },
+                "dietaryRestriction": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "diningOptions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "diningOptionId": {
+                        "type": "number"
+                      },
+                      "diningOptionQty": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                },
+                "email": {
+                  "type": "string"
+                },
+                "exactTime": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "mobileNo": {
+                  "type": "string"
+                },
+                "occasion": {
+                  "type": "string"
+                },
+                "promocode": {
+                  "type": "string"
+                },
+                "salutation": {
+                  "type": "string"
+                },
+                "customerCompanyName": {
+                  "type": "string"
+                },
+                "seatingPreference": {
+                  "type": "string"
+                },
+                "specialRequest": {
+                  "type": "string"
+                },
+                "isOPT": {
+                  "type": "boolean"
+                },
+                "cardDetails": {
+                  "type": "object",
+                  "properties": {
+                    "number": {
+                      "type": "string"
+                    },
+                    "exp_month": {
+                      "type": "string"
+                    },
+                    "exp_year": {
+                      "type": "string"
+                    },
+                    "cvc": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "basket": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "itemId": {
+                            "type": "number"
+                          },
+                          "qty": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "privateRoom": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "date",
+                "noOfPerson",
+                "preferredTime",
+                "exactTime",
+                "name",
+                "email",
+                "mobileNo",
+                "salutation",
+                "number",
+                "exp_month",
+                "exp_year",
+                "cvc",
+                "itemId",
+                "qty",
+                "diningOptions",
+                "privateRoom",
+                "id"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Book Table"
+          }
+        }
+      }
+    },
+    "/reservation/outlet": {
+      "get": {
+        "tags": ["Reservation"],
+        "description": "Get All Oulets",
+        "responses": {
+          "200": {
+            "description": "Get All Oulets"
+          }
+        }
+      }
+    },
+
+    "/outletgrouptable": {
+      "post": {
+        "tags": ["OutletGroupTable"],
+        "description": "Create Outlet Group Table",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "outletTable_1": {
+                  "type": "number"
+                },
+                "outletTable_2": {
+                  "type": "number"
+                }
+              },
+              "required": ["outletTable_1", "outletTable_2"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Outlet Group Table"
+          }
+        }
+      }
+    },
+    "/outletgrouptable/seatingtype/{id}": {
+      "get": {
+        "tags": ["OutletGroupTable"],
+        "description": "Get All Outlet Group Table",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Seatingtype Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Outlet Group Table"
+          }
+        }
+      }
+    },
+
+    "/grouptable/seatingtype/{id}": {
+      "post": {
+        "tags": ["GroupTable"],
+        "description": "Create Group Table",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "seatingtype Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "outletTable": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "name": {
+                  "type": "string"
+                },
+                "minPax": {
+                  "type": "number"
+                },
+                "maxPax": {
+                  "type": "number"
+                }
+              },
+              "required": ["outletTable"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Group Table"
+          }
+        }
+      },
+      "get": {
+        "tags": ["GroupTable"],
+        "description": "Get Group Table",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Seatingtype Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Group Table"
+          }
+        }
+      }
+    },
+    "/grouptable/seatingtype/{seatingtypeId}/grouptable/{id}": {
+      "put": {
+        "tags": ["GroupTable"],
+        "description": "Update Group Table",
+        "parameters": [
+          {
+            "name": "seatingtypeId",
+            "in": "path",
+            "type": "string",
+            "description": "Seatingtype Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "grouptable Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "minPax": {
+                  "type": "number"
+                },
+                "maxPax": {
+                  "type": "number"
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              },
+              "required": ["name", "minPax", "maxPax", "isActive"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Group Table"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["GroupTable"],
+        "description": "Delete Group Table",
+        "parameters": [
+          {
+            "name": "tagId",
+            "in": "path",
+            "type": "string",
+            "description": "Tag Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Group Table"
+          }
+        }
+      },
+      "post": {
+        "tags": ["GroupTable"],
+        "description": "Add Possibities",
+        "parameters": [
+          {
+            "name": "seatingtypeId",
+            "in": "path",
+            "type": "string",
+            "description": "Seatingtype Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "grouptable Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "outletTable": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              },
+              "required": ["outletTable"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Add Possibities"
+          }
+        }
+      }
+    },
+    "/grouptable/seatingtype/{seatingtypeId}/grouptable/{grouptableId}/possibility/{id}": {
+      "delete": {
+        "tags": ["GroupTable"],
+        "description": "Delete Possibities",
+        "parameters": [
+          {
+            "name": "seatingtypeId",
+            "in": "path",
+            "type": "string",
+            "description": "Seatingtype Id",
+            "required": true
+          },
+          {
+            "name": "grouptableId",
+            "in": "path",
+            "type": "string",
+            "description": "grouptable Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "possibility Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Possibities"
+          }
+        }
+      }
+    },
+
+    "/tablesection/seatingtype/{id}": {
+      "post": {
+        "tags": ["TableSection"],
+        "description": "Create Table Section",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "seatingtype Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "color": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "minPax": {
+                  "type": "number"
+                },
+                "maxPax": {
+                  "type": "number"
+                },
+                "outletTable": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              },
+              "required": ["name", "color", "outletTable"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Table Section"
+          }
+        }
+      },
+      "get": {
+        "tags": ["TableSection"],
+        "description": "Get All Table Section",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "seatingtype Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Table Section"
+          }
+        }
+      }
+    },
+    "/tablesection/{id}": {
+      "delete": {
+        "tags": ["TableSection"],
+        "description": "Delete Table Section",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "tablesection Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Table Section"
+          }
+        }
+      }
+    },
+    "/tablesection/private/seatingtype/{id}": {
+      "post": {
+        "tags": ["TableSection"],
+        "description": "Create Private Section",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "seatingtype Id",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "name."
+          },
+          {
+            "in": "formData",
+            "name": "color",
+            "type": "string",
+            "required": true,
+            "description": "color."
+          },
+          {
+            "in": "formData",
+            "name": "originalPrice",
+            "type": "string",
+            "required": true,
+            "description": "originalPrice."
+          },
+          {
+            "in": "formData",
+            "name": "depositPrice",
+            "type": "string",
+            "required": true,
+            "description": "depositPrice."
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "type": "string",
+            "required": true,
+            "description": "description."
+          },
+          {
+            "in": "formData",
+            "name": "minPax",
+            "type": "string",
+            "required": true,
+            "description": "minPax."
+          },
+          {
+            "in": "formData",
+            "name": "maxPax",
+            "type": "string",
+            "required": true,
+            "description": "maxPax."
+          },
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "file",
+            "required": true,
+            "description": "image."
+          },
+          {
+            "in": "formData",
+            "name": "outletTables",
+            "type": "string",
+            "required": true,
+            "description": "outletTables."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Private Section"
+          }
+        }
+      }
+    },
+    "/tablesection/private/{id}/seatingtype/{seatingtypeId}": {
+      "put": {
+        "tags": ["TableSection"],
+        "description": "Update Private Section",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Private Id",
+            "required": true
+          },
+          {
+            "name": "seatingtypeId",
+            "in": "path",
+            "type": "string",
+            "description": "Seatingtype Id",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "name."
+          },
+          {
+            "in": "formData",
+            "name": "color",
+            "type": "string",
+            "required": true,
+            "description": "color."
+          },
+          {
+            "in": "formData",
+            "name": "originalPrice",
+            "type": "string",
+            "required": true,
+            "description": "originalPrice."
+          },
+          {
+            "in": "formData",
+            "name": "depositPrice",
+            "type": "string",
+            "required": true,
+            "description": "depositPrice."
+          },
+          {
+            "in": "formData",
+            "name": "minPax",
+            "type": "string",
+            "required": true,
+            "description": "minPax."
+          },
+          {
+            "in": "formData",
+            "name": "maxPax",
+            "type": "string",
+            "required": true,
+            "description": "maxPax."
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "type": "string",
+            "required": true,
+            "description": "description."
+          },
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "file",
+            "required": true,
+            "description": "image."
+          },
+          {
+            "in": "formData",
+            "name": "isActive",
+            "type": "boolean",
+            "required": true,
+            "description": "isActive."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Private Section"
+          }
+        }
+      }
+    },
+    "/tablesection/private/outlet/{id}": {
+      "get": {
+        "tags": ["TableSection"],
+        "description": "Get Private Table Section",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Private Table Section"
+          }
+        }
+      }
+    },
+
+    "/company": {
+      "post": {
+        "tags": ["Company"],
+        "description": "Create Company",
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "name."
+          },
+          {
+            "in": "formData",
+            "name": "contentLanguage",
+            "type": "string",
+            "required": true,
+            "description": "contentLanguage."
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "type": "string",
+            "required": true,
+            "description": "description."
+          },
+          {
+            "in": "formData",
+            "name": "paymentTC",
+            "type": "string",
+            "required": true,
+            "description": "paymentTC."
+          },
+          {
+            "in": "formData",
+            "name": "noPaymentTC",
+            "type": "string",
+            "required": true,
+            "description": "noPaymentTC."
+          },
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "file",
+            "required": true,
+            "description": "image."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Company"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Company"],
+        "description": "Get All Company",
+        "responses": {
+          "200": {
+            "description": "Get All Company"
+          }
+        }
+      }
+    },
+    "/company/{key}": {
+      "get": {
+        "tags": ["Company"],
+        "description": "Get Company By Key",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "type": "string",
+            "description": "Company Key",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Company By Key"
+          }
+        }
+      }
+    },
+    "/company/{id}": {
+      "put": {
+        "tags": ["Company"],
+        "description": "Update Company",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Company Id",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "name."
+          },
+          {
+            "in": "formData",
+            "name": "contentLanguage",
+            "type": "string",
+            "required": true,
+            "description": "contentLanguage."
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "type": "string",
+            "required": true,
+            "description": "description."
+          },
+          {
+            "in": "formData",
+            "name": "paymentTC",
+            "type": "string",
+            "required": true,
+            "description": "paymentTC."
+          },
+          {
+            "in": "formData",
+            "name": "noPaymentTC",
+            "type": "string",
+            "required": true,
+            "description": "noPaymentTC."
+          },
+          {
+            "in": "formData",
+            "name": "isActive",
+            "type": "boolean",
+            "required": true,
+            "description": "isActive."
+          },
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "file",
+            "required": true,
+            "description": "image."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Company"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Company"],
+        "description": "Delete Company",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Company Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Company"
+          }
+        }
+      }
+    },
+    "/company/user": {
+      "get": {
+        "tags": ["Company"],
+        "description": "Get User's Company",
+        "responses": {
+          "200": {
+            "description": "Get User's Company"
+          }
+        }
+      }
+    },
+    "/company/{id}/mailchimp": {
+      "put": {
+        "tags": ["Company"],
+        "description": "Update Company MailChimp",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Company Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mailChimpPublicKey": {
+                  "type": "string"
+                },
+                "mailChimpPrivateKey": {
+                  "type": "string"
+                },
+                "audianceList": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "mailChimpUserName": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "mailChimpPublicKey",
+                "mailChimpPrivateKey",
+                "audianceList",
+                "mailChimpUserName"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Company MailChimp"
+          }
+        }
+      }
+    },
+    "/company/{id}/ivrs": {
+      "put": {
+        "tags": ["Company"],
+        "description": "Update Company Ivrs",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Company Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ivrsUserKey": {
+                  "type": "string"
+                },
+                "ivrsSecretKey": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Company Ivrs"
+          }
+        }
+      }
+    },
+
+    "/invoice/{key}": {
+      "get": {
+        "tags": ["Invoice"],
+        "description": "Get Invoice",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "type": "string",
+            "description": "invoice key",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Invoice"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Invoice"],
+        "description": "Update Invoice Status",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "type": "string",
+            "description": "Invoice key",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "specialRequest": {
+                  "type": "string"
+                },
+                "reservationNotes": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "occasion": {
+                  "type": "string"
+                },
+                "seatingPreference": {
+                  "type": "string"
+                },
+                "dietaryRestriction": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "customerCompanyName": {
+                  "type": "string"
+                },
+                "tableChangeRequest": {
+                  "type": "object",
+                  "properties": {
+                    "noOfPerson": {
+                      "type": "number"
+                    },
+                    "date": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "startTime": {
+                      "type": "number"
+                    },
+                    "outletTables": {
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "status",
+                "noOfPerson",
+                "date",
+                "startTime",
+                "outletTables"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Invoice Status"
+          }
+        }
+      }
+    },
+    "/invoice/outlet/{id}/false": {
+      "post": {
+        "tags": ["Invoice"],
+        "description": "Get All Invoice By OutletId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "fromDate": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "toDate": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "mealType": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": ["fromDate", "toDate", "mealType", "status"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Invoice By OutletId"
+          }
+        }
+      }
+    },
+    "/invoice/confirmation/{key}": {
+      "put": {
+        "tags": ["Invoice"],
+        "description": "Update Invoice Status By Customer",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet key",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": ["status"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Invoice Status By Customer"
+          }
+        }
+      }
+    },
+    "/invoice/{key}/charge": {
+      "put": {
+        "tags": ["Invoice"],
+        "description": "Charge Amount",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "type": "string",
+            "description": "invoice key",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Charge Amount"
+          }
+        }
+      }
+    },
+
+    "/customer/company/{id}": {
+      "post": {
+        "tags": ["Customer"],
+        "description": "Get All Customer By CompanyId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Company id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "filter": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Customer By CompanyId"
+          }
+        }
+      }
+    },
+    "/customer/{customerId}/company/{id}": {
+      "get": {
+        "tags": ["Customer"],
+        "description": "Get Customer Reservation By id",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "type": "string",
+            "description": "Customer id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Company id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Customer Reservation By id"
+          }
+        }
+      }
+    },
+    "/customer/{customerId}/profile/outlet/{id}": {
+      "get": {
+        "tags": ["Customer"],
+        "description": "Get  Customer Profile By id",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "type": "string",
+            "description": "Customer id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get  Customer Profile By id"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Customer"],
+        "description": "Update Customer",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "type": "string",
+            "description": "Customer id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "mobileNo": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": ["name", "email", "mobileNo", "tags"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Customer"
+          }
+        }
+      }
+    },
+
+    "/tagcategory/outlet/{id}": {
+      "post": {
+        "tags": ["TagCategory"],
+        "description": "Create Tag Category",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "number"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": ["name"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Tag Category"
+          }
+        }
+      },
+      "get": {
+        "tags": ["TagCategory"],
+        "description": "Get Tag Category",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Tag Category"
+          }
+        }
+      }
+    },
+    "/tagcategory/{tagcategoryId}/outlet/{id}": {
+      "put": {
+        "tags": ["TagCategory"],
+        "description": "Update  Tag Category",
+        "parameters": [
+          {
+            "name": "tagcategoryId",
+            "in": "path",
+            "type": "string",
+            "description": "TagCategory Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "number"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              },
+              "required": ["name", "isActive"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update  Tag Category"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["TagCategory"],
+        "description": "Delete Tag Category",
+        "parameters": [
+          {
+            "name": "tagcategoryId",
+            "in": "path",
+            "type": "string",
+            "description": "TagCategory Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Tag Category"
+          }
+        }
+      }
+    },
+
+    "/booking/outlet/{id}": {
+      "post": {
+        "tags": ["ListingView"],
+        "description": "Get Availabe Table",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "noOfPerson": {
+                  "type": "number"
+                },
+                "startTime": {
+                  "type": "string"
+                },
+                "outletSeatingTypeId": {
+                  "type": "string"
+                }
+              },
+              "required": ["noOfPerson", "startTime", "outletSeatingTypeId"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Availabe Table"
+          }
+        }
+      }
+    },
+    "/booking/reservation/outlet/{id}": {
+      "post": {
+        "tags": ["ListingView"],
+        "description": "New Booking Reservation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "noOfPerson": {
+                  "type": "number"
+                },
+                "startTime": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "mobileNo": {
+                  "type": "string"
+                },
+                "bookingType": {
+                  "type": "string"
+                },
+                "specialRequest": {
+                  "type": "string"
+                },
+                "outletTables": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "noOfPerson",
+                "startTime",
+                "name",
+                "email",
+                "mobileNo",
+                "bookingType",
+                "outletTables"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New Booking Reservation"
+          }
+        }
+      }
+    },
+    "/booking/private/outlet/{id}": {
+      "post": {
+        "tags": ["ListingView"],
+        "description": "Get Availabe Table  For Private Event",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "noOfPerson": {
+                  "type": "number"
+                },
+                "startTime": {
+                  "type": "string"
+                },
+                "endTime": {
+                  "type": "string"
+                },
+                "outletSeatingTypeId": {
+                  "type": "string"
+                },
+                "startDate": {
+                  "type": "string"
+                },
+                "endDate": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "noOfPerson",
+                "startTime",
+                "endTime",
+                "outletSeatingTypeId",
+                "startDate",
+                "endDate"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Availabe Table  For Private Event"
+          }
+        }
+      }
+    },
+    "/booking/private/reservation/outlet/{id}": {
+      "post": {
+        "tags": ["ListingView"],
+        "description": "New Private Booking",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "noOfPerson",
+            "type": "string",
+            "required": true,
+            "description": "noOfPerson."
+          },
+          {
+            "in": "formData",
+            "name": "startTime",
+            "type": "string",
+            "required": true,
+            "description": "startTime."
+          },
+          {
+            "in": "formData",
+            "name": "endTime",
+            "type": "string",
+            "required": true,
+            "description": "endTime."
+          },
+          {
+            "in": "formData",
+            "name": "startDate",
+            "type": "string",
+            "required": true,
+            "description": "startDate."
+          },
+          {
+            "in": "formData",
+            "name": "endDate",
+            "type": "string",
+            "required": true,
+            "description": "endDate."
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "name."
+          },
+          {
+            "in": "formData",
+            "name": "lastName",
+            "type": "string",
+            "required": true,
+            "description": "lastName."
+          },
+          {
+            "in": "formData",
+            "name": "email",
+            "type": "string",
+            "required": true,
+            "description": "email."
+          },
+          {
+            "in": "formData",
+            "name": "mobileNo",
+            "type": "string",
+            "required": true,
+            "description": "mobileNo."
+          },
+          {
+            "in": "formData",
+            "name": "bookingType",
+            "type": "string",
+            "required": true,
+            "description": "bookingType."
+          },
+          {
+            "in": "formData",
+            "name": "specialRequest",
+            "type": "string",
+            "required": true,
+            "description": "specialRequest."
+          },
+          {
+            "in": "formData",
+            "name": "outletTables",
+            "type": "string",
+            "required": true,
+            "description": "outletTables."
+          },
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "file",
+            "required": true,
+            "description": "image."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New Private Booking"
+          }
+        }
+      }
+    },
+
+    "/common/timeslot": {
+      "post": {
+        "tags": ["Common"],
+        "description": "Get TimeSlots",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "noOfPerson": {
+                  "type": "number"
+                },
+                "outletId": {
+                  "type": "number"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "checkPax": {
+                  "type": "boolean"
+                }
+              },
+              "required": ["noOfPerson", "outletId", "date"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get TimeSlots"
+          }
+        }
+      }
+    },
+    "/common/shortenLink/{id}": {
+      "get": {
+        "tags": ["Common"],
+        "description": "Get Shorten Link  ",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "noOfPerson": {
+                  "type": "number"
+                },
+                "outletId": {
+                  "type": "number"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "checkPax": {
+                  "type": "boolean"
+                }
+              },
+              "required": ["noOfPerson", "outletId", "date"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Shorten Link  "
+          }
+        }
+      }
+    },
+
+    "/seatingview/outlet/{id}": {
+      "post": {
+        "tags": ["SeatingView"],
+        "description": "Get All SeatingView",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "outletSeatingTypeId": {
+                  "type": "number"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                }
+              },
+              "required": ["outletSeatingTypeId"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All SeatingView"
+          }
+        }
+      },
+      "put": {
+        "tags": ["SeatingView"],
+        "description": "Update Status",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "outletSeatingTypeId": {
+                  "type": "number"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                }
+              },
+              "required": ["outletSeatingTypeId"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Status"
+          }
+        }
+      }
+    },
+    "/seatingview/move/outlet/{id}": {
+      "put": {
+        "tags": ["SeatingView"],
+        "description": "Move Reservation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "outletTableBookingId": {
+                  "type": "number"
+                },
+                "toOutleTableId": {
+                  "type": "number"
+                }
+              },
+              "required": ["outletTableBookingId", "toOutleTableId"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Move Reservation"
+          }
+        }
+      }
+    },
+    "/seatingview/reservation/outlet/{id}": {
+      "post": {
+        "tags": ["SeatingView"],
+        "description": "New Booking Reservation in SeatingView",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "bookingType": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "mobileNo": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "noOfPerson": {
+                  "type": "number"
+                },
+                "outletTables": {
+                  "type": "string"
+                },
+                "specialRequest": {
+                  "type": "string"
+                },
+                "startTime": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                }
+              }
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New Booking Reservation in SeatingView"
+          }
+        }
+      }
+    },
+
+    "/coupon/outlet/{id}": {
+      "post": {
+        "tags": ["Coupon"],
+        "description": "Create Coupon",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "startDate": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "endDate": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "openingTime": {
+                  "type": "string"
+                },
+                "closingTime": {
+                  "type": "string"
+                },
+                "discountAmount": {
+                  "type": "number"
+                },
+                "noOfPerson": {
+                  "type": "number"
+                },
+                "tc": {
+                  "type": "string"
+                },
+                "repeatOn": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "name",
+                "startDate",
+                "endDate",
+                "openingTime",
+                "closingTime",
+                "discountAmount",
+                "noOfPerson"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Coupon"
+          }
+        }
+      }
+    },
+    "/coupon/get/outlet/{id}": {
+      "post": {
+        "tags": ["Coupon"],
+        "description": "GetAll Coupon",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetAll Coupon"
+          }
+        }
+      }
+    },
+    "/coupon/{couponId}/outlet/{id}": {
+      "put": {
+        "tags": ["Coupon"],
+        "description": "Update Coupon",
+        "parameters": [
+          {
+            "name": "couponId",
+            "in": "path",
+            "type": "string",
+            "description": "Coupon Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "startDate": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "endDate": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "openingTime": {
+                  "type": "string"
+                },
+                "closingTime": {
+                  "type": "string"
+                },
+                "discountAmount": {
+                  "type": "number"
+                },
+                "noOfPerson": {
+                  "type": "number"
+                },
+                "tc": {
+                  "type": "string"
+                },
+                "repeatOn": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "isCampaignActive": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "startDate",
+                "endDate",
+                "openingTime",
+                "closingTime",
+                "discountAmount",
+                "noOfPerson",
+                "isCampaignActive"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Coupon"
+          }
+        }
+      }
+    },
+
+    "/material/outlet/{id}": {
+      "post": {
+        "tags": ["Materials"],
+        "description": "Create Materials",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "title",
+            "type": "string",
+            "required": true,
+            "description": "title."
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "type": "string",
+            "required": true,
+            "description": "description."
+          },
+          {
+            "in": "formData",
+            "name": "attachment",
+            "type": "string",
+            "required": true,
+            "description": "attachment."
+          },
+          {
+            "in": "formData",
+            "name": "thumbnail",
+            "type": "string",
+            "required": true,
+            "description": "thumbnail."
+          },
+          {
+            "in": "formData",
+            "name": "tags",
+            "type": "string",
+            "required": true,
+            "description": "tags."
+          },
+          {
+            "in": "formData",
+            "name": "categoryId",
+            "type": "string",
+            "required": true,
+            "description": "categoryId."
+          },
+          {
+            "in": "formData",
+            "name": "subCategoryId",
+            "type": "string",
+            "required": true,
+            "description": "subCategoryId."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Materials"
+          }
+        }
+      }
+    },
+    "/material/filter/outlet/{id}": {
+      "post": {
+        "tags": ["Materials"],
+        "description": "Get all Materials",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "search": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get all Materials"
+          }
+        }
+      }
+    },
+    "/material/{id}": {
+      "get": {
+        "tags": ["Materials"],
+        "description": "Get Material By Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "material Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Material By Id"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Materials"],
+        "description": "Update Material",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Materials Id",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "title",
+            "type": "string",
+            "required": true,
+            "description": "title."
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "type": "string",
+            "required": true,
+            "description": "description."
+          },
+          {
+            "in": "formData",
+            "name": "attachment",
+            "type": "string",
+            "required": true,
+            "description": "attachment."
+          },
+          {
+            "in": "formData",
+            "name": "thumbnail",
+            "type": "string",
+            "required": true,
+            "description": "thumbnail."
+          },
+          {
+            "in": "formData",
+            "name": "tags",
+            "type": "string",
+            "required": true,
+            "description": "tags."
+          },
+          {
+            "in": "formData",
+            "name": "categoryId",
+            "type": "string",
+            "required": true,
+            "description": "categoryId."
+          },
+          {
+            "in": "formData",
+            "name": "subCategoryId",
+            "type": "string",
+            "required": true,
+            "description": "subCategoryId."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Material"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Materials"],
+        "description": "Delete Materials",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Materials Id",
+            "required": true
+          }
+        ]
+      }
+    },
+
+    "/category/outlet/{id}": {
+      "post": {
+        "tags": ["Category"],
+        "description": "Create Category",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": ["name"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Category"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Category"],
+        "description": "Get  Category",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get  Category"
+          }
+        }
+      }
+    },
+    "/category/{categoryId}/outlet/{id}": {
+      "put": {
+        "tags": ["Category"],
+        "description": "Update  Category",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "type": "string",
+            "description": "Category Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              },
+              "required": ["name", "isActive"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update  Category"
+          }
+        }
+      }
+    },
+    "/category/{id}": {
+      "delete": {
+        "tags": ["Category"],
+        "description": "Delete Category",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "category Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Category"
+          }
+        }
+      }
+    },
+
+    "/subcategory/outlet/{id}": {
+      "post": {
+        "tags": ["SubCategory"],
+        "description": "Create Sub Category",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "categoryId": {
+                  "type": "number"
+                }
+              },
+              "required": ["name", "categoryId"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Sub Category"
+          }
+        }
+      }
+    },
+    "/subcategory/category/{categoryId}/outlet/{id}": {
+      "get": {
+        "tags": ["SubCategory"],
+        "description": "Get Sub Category",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "type": "string",
+            "description": "category Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Sub Category"
+          }
+        }
+      }
+    },
+    "/subcategory/{subcategoryId}/outlet/{id}": {
+      "put": {
+        "tags": ["SubCategory"],
+        "description": "Update Sub Category",
+        "parameters": [
+          {
+            "name": "subcategoryId",
+            "in": "path",
+            "type": "string",
+            "description": "subcategory Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "categoryId": {
+                  "type": "number"
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              },
+              "required": ["name", "categoryId", "isActive"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Sub Category"
+          }
+        }
+      }
+    },
+    "/subcategory/{id}": {
+      "delete": {
+        "tags": ["SubCategory"],
+        "description": "Delete Sub Category",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Subcategory Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Sub Category"
+          }
+        }
+      }
+    },
+
+    "/diningoption/outlet/{id}": {
+      "post": {
+        "tags": ["DiningOption"],
+        "description": "Create Dining Option",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "name."
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "type": "string",
+            "required": true,
+            "description": "description."
+          },
+          {
+            "in": "formData",
+            "name": "price",
+            "type": "string",
+            "required": true,
+            "description": "price."
+          },
+          {
+            "in": "formData",
+            "name": "dailyMaxQty",
+            "type": "string",
+            "required": true,
+            "description": "dailyMaxQty."
+          },
+          {
+            "in": "formData",
+            "name": "bookingMaxQty",
+            "type": "string",
+            "required": true,
+            "description": "bookingMaxQty."
+          },
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "file",
+            "required": true,
+            "description": "image."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Dining Option"
+          }
+        }
+      }
+    },
+    "/diningoption/filter/outlet/{id}": {
+      "post": {
+        "tags": ["DiningOption"],
+        "description": "Get All Dining Option",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "isActive": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Dining Option"
+          }
+        }
+      }
+    },
+    "/diningoption/{diningoptionId}/outlet/{id}": {
+      "put": {
+        "tags": ["DiningOption"],
+        "description": "Update Dining Option",
+        "parameters": [
+          {
+            "name": "diningoptionId",
+            "in": "path",
+            "type": "string",
+            "description": "DiningOption Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "name."
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "type": "string",
+            "required": true,
+            "description": "description."
+          },
+          {
+            "in": "formData",
+            "name": "price",
+            "type": "string",
+            "required": true,
+            "description": "price."
+          },
+          {
+            "in": "formData",
+            "name": "dailyMaxQty",
+            "type": "string",
+            "required": true,
+            "description": "dailyMaxQty."
+          },
+          {
+            "in": "formData",
+            "name": "bookingMaxQty",
+            "type": "string",
+            "required": true,
+            "description": "bookingMaxQty."
+          },
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "file",
+            "required": true,
+            "description": "image."
+          },
+          {
+            "in": "formData",
+            "name": "isActive",
+            "type": "boolean",
+            "required": true,
+            "description": "isActive."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Dining Option"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["DiningOption"],
+        "description": "Delete Dining Option",
+        "parameters": [
+          {
+            "name": "diningoptionId",
+            "in": "path",
+            "type": "string",
+            "description": "DiningOption Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Dining Option"
+          }
+        }
+      }
+    },
+    "/diningoption/company/{id}": {
+      "get": {
+        "tags": ["DiningOption"],
+        "description": "Get All Dining Option By Company Id Copy",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Dining Option By Company Id Copy"
+          }
+        }
+      }
+    },
+    "/diningoption/booking/outlet/{id}": {
+      "post": {
+        "tags": ["DiningOption"],
+        "description": "Get All Dining Booking",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Dining Booking"
+          }
+        }
+      }
+    },
+
+    "/emailtemplate/outlet/{id}": {
+      "post": {
+        "tags": ["EmailTemplate"],
+        "description": "Create Email Template",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "templateType": {
+                  "type": "string"
+                },
+                "contentLanguage": {
+                  "type": "string"
+                },
+                "subject": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "templateType",
+                "contentLanguage",
+                "subject",
+                "body"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Email Template"
+          }
+        }
+      },
+      "get": {
+        "tags": ["EmailTemplate"],
+        "description": "Get All Email Template",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Email Template"
+          }
+        }
+      }
+    },
+    "/emailtemplate/{emailtemplateId}/outlet/{id}": {
+      "put": {
+        "tags": ["EmailTemplate"],
+        "description": "Update Email Template",
+        "parameters": [
+          {
+            "name": "emailtemplateId",
+            "in": "path",
+            "type": "string",
+            "description": "EmailTemplate Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "templateType": {
+                  "type": "string"
+                },
+                "contentLanguage": {
+                  "type": "string"
+                },
+                "subject": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string"
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "name",
+                "templateType",
+                "contentLanguage",
+                "subject",
+                "body",
+                "isActive"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Email Template"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["EmailTemplate"],
+        "description": "Delete Email Template",
+        "parameters": [
+          {
+            "name": "emailtemplateId",
+            "in": "path",
+            "type": "string",
+            "description": "EmailTemplate Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Email Template"
+          }
+        }
+      }
+    },
+    "/emailtemplate/imageupload": {
+      "post": {
+        "tags": ["EmailTemplate"],
+        "description": "Upload Template Image",
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "file",
+            "required": true,
+            "description": "image."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Upload Template Image"
+          }
+        }
+      }
+    },
+
+    "/ticket/outlet/{id}": {
+      "post": {
+        "tags": ["Ticketing"],
+        "description": "Create Ticketing",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "name."
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "type": "string",
+            "required": true,
+            "description": "description."
+          },
+          {
+            "in": "formData",
+            "name": "startDate",
+            "format": "date",
+            "type": "string",
+            "required": true,
+            "description": "startDate."
+          },
+          {
+            "in": "formData",
+            "name": "endDate",
+            "format": "date",
+            "type": "string",
+            "required": true,
+            "description": "endDate."
+          },
+          {
+            "in": "formData",
+            "name": "openingTime",
+            "type": "string",
+            "required": true,
+            "description": "openingTime."
+          },
+          {
+            "in": "formData",
+            "name": "closingTime",
+            "type": "string",
+            "required": true,
+            "description": "closingTime."
+          },
+          {
+            "in": "formData",
+            "name": "amount",
+            "type": "string",
+            "required": true,
+            "description": "amount."
+          },
+          {
+            "in": "formData",
+            "name": "noOfPerson",
+            "type": "number",
+            "required": true,
+            "description": "noOfPerson."
+          },
+          {
+            "in": "formData",
+            "name": "ticketMaxQuantity",
+            "type": "string",
+            "required": true,
+            "description": "ticketMaxQuantity."
+          },
+          {
+            "in": "formData",
+            "name": "timeSlotInterval",
+            "type": "string",
+            "required": true,
+            "description": "timeSlotInterval."
+          },
+          {
+            "in": "formData",
+            "name": "blockSchedule",
+            "type": "string",
+            "required": true,
+            "description": "blockSchedule."
+          },
+          {
+            "in": "formData",
+            "name": "prePayment",
+            "type": "string",
+            "required": true,
+            "description": "prePayment."
+          },
+          {
+            "in": "formData",
+            "name": "blockTable",
+            "type": "string",
+            "required": true,
+            "description": "blockTable."
+          },
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "file",
+            "required": true,
+            "description": "image."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Ticketing"
+          }
+        }
+      }
+    },
+    "/ticket/filter/outlet/{id}": {
+      "post": {
+        "tags": ["Ticketing"],
+        "description": "Get All Ticket",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "isActive": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Ticket"
+          }
+        }
+      }
+    },
+    "/ticket/{ticketId}/outlet/{id}": {
+      "put": {
+        "tags": ["Ticketing"],
+        "description": "Update Ticketing",
+        "parameters": [
+          {
+            "name": "ticketId",
+            "in": "path",
+            "type": "string",
+            "description": "Ticket Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "name."
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "type": "string",
+            "required": true,
+            "description": "description."
+          },
+          {
+            "in": "formData",
+            "name": "startDate",
+            "format": "date",
+            "type": "string",
+            "required": true,
+            "description": "startDate."
+          },
+          {
+            "in": "formData",
+            "name": "endDate",
+            "format": "date",
+            "type": "string",
+            "required": true,
+            "description": "endDate."
+          },
+          {
+            "in": "formData",
+            "name": "openingTime",
+            "type": "string",
+            "required": true,
+            "description": "openingTime."
+          },
+          {
+            "in": "formData",
+            "name": "closingTime",
+            "type": "string",
+            "required": true,
+            "description": "closingTime."
+          },
+          {
+            "in": "formData",
+            "name": "amount",
+            "type": "string",
+            "required": true,
+            "description": "amount."
+          },
+          {
+            "in": "formData",
+            "name": "noOfPerson",
+            "type": "number",
+            "required": true,
+            "description": "noOfPerson."
+          },
+          {
+            "in": "formData",
+            "name": "ticketMaxQuantity",
+            "type": "string",
+            "required": true,
+            "description": "ticketMaxQuantity."
+          },
+          {
+            "in": "formData",
+            "name": "timeSlotInterval",
+            "type": "string",
+            "required": true,
+            "description": "timeSlotInterval."
+          },
+          {
+            "in": "formData",
+            "name": "blockSchedule",
+            "type": "string",
+            "required": true,
+            "description": "blockSchedule."
+          },
+          {
+            "in": "formData",
+            "name": "prePayment",
+            "type": "string",
+            "required": true,
+            "description": "prePayment."
+          },
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "file",
+            "required": true,
+            "description": "image."
+          },
+          {
+            "in": "formData",
+            "name": "isActive",
+            "type": "boolean",
+            "required": true,
+            "description": "image."
+          },
+          {
+            "in": "formData",
+            "name": "blockTable",
+            "type": "string",
+            "required": true,
+            "description": "blockTable."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Ticketing"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Ticketing"],
+        "description": "Delete Ticket",
+        "parameters": [
+          {
+            "name": "ticketId",
+            "in": "path",
+            "type": "string",
+            "description": "Ticket Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Ticket"
+          }
+        }
+      }
+    },
+    "/ticket/company/{key}": {
+      "get": {
+        "tags": ["Ticketing"],
+        "description": "Get Ticket by Comapny Key",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "type": "string",
+            "description": "Company Key",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Ticket by Comapny Key"
+          }
+        }
+      }
+    },
+
+    "/ticketbooking/{id}/timeslot": {
+      "post": {
+        "tags": ["TicketingBooking"],
+        "description": "Get TimeSlot",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "TicketBooking Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "noOfPerson": {
+                  "type": "number"
+                }
+              },
+              "required": ["date", "noOfPerson"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get TimeSlot"
+          }
+        }
+      }
+    },
+    "/ticketbooking/{id}/reservation": {
+      "post": {
+        "tags": ["TicketingBooking"],
+        "description": "Book ticket",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "noOfPerson": {
+                  "type": "number"
+                },
+                "exactTime": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "mobileNo": {
+                  "type": "string"
+                },
+                "bookingType": {
+                  "type": "string"
+                },
+                "specialRequest": {
+                  "type": "string"
+                },
+                "salutation": {
+                  "type": "string"
+                },
+                "dietaryRestriction": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "occasion": {
+                  "type": "string"
+                },
+                "isOPT": {
+                  "type": "boolean"
+                },
+                "cardDetails": {
+                  "type": "object",
+                  "properties": {
+                    "number": {
+                      "type": "string"
+                    },
+                    "exp_month": {
+                      "type": "string"
+                    },
+                    "exp_year": {
+                      "type": "string"
+                    },
+                    "cvc": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "date",
+                "noOfPerson",
+                "exactTime",
+                "name",
+                "email",
+                "mobileNo",
+                "salutation",
+                "number",
+                "exp_month",
+                "exp_year",
+                "cvc"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Book ticket"
+          }
+        }
+      }
+    },
+
+    "/smstemplate/outlet/{id}": {
+      "post": {
+        "tags": ["SMSTemplate"],
+        "description": "Create SMS Template",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "contentLanguage": {
+                  "type": "string"
+                },
+                "templateType": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string"
+                }
+              },
+              "required": ["name", "contentLanguage", "templateType", "body"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create SMS Template"
+          }
+        }
+      },
+      "get": {
+        "tags": ["SMSTemplate"],
+        "description": "Get All SMS Templates",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All SMS Templates"
+          }
+        }
+      }
+    },
+    "/smstemplate/{smstemplateId}/outlet/{id}": {
+      "put": {
+        "tags": ["SMSTemplate"],
+        "description": "Update SMS Template",
+        "parameters": [
+          {
+            "name": "smstemplateId",
+            "in": "path",
+            "type": "string",
+            "description": "SMS Template Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "contentLanguage": {
+                  "type": "string"
+                },
+                "templateType": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string"
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "name",
+                "contentLanguage",
+                "templateType",
+                "body",
+                "isActive"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update SMS Template"
+          }
+        }
+      }
+    },
+    "/smstemplate/{id}": {
+      "delete": {
+        "tags": ["SMSTemplate"],
+        "description": "Delete SMS Template",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "SMS Template Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete SMS Template"
+          }
+        }
+      }
+    },
+
+    "/ivrs/outlet/{id}": {
+      "post": {
+        "tags": ["IVRS"],
+        "description": "Get IVRS Details",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "fromDate": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "toDate": {
+                  "type": "string",
+                  "format": "date"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get IVRS Details"
+          }
+        }
+      }
+    },
+    "/ivrs/{id}": {
+      "put": {
+        "tags": ["IVRS"],
+        "description": "Update Ivrs",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "ivrs Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "isDone": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "notes": {
+                  "type": "string"
+                }
+              },
+              "required": ["isDone", "id", "name"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Ivrs"
+          }
+        }
+      },
+      "get": {
+        "tags": ["IVRS"],
+        "description": "Get Caller Info",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Caller Info"
+          }
+        }
+      }
+    },
+
+    "/marketing/company/{id}": {
+      "post": {
+        "tags": ["Marketing"],
+        "description": "Create Marketing",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Company Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "criteria": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fieldName": {
+                        "type": "string"
+                      },
+                      "criteria": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "required": ["name", "fieldName", "criteria", "value"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Marketing"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Marketing"],
+        "description": "Get Marketing",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Company Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Marketing"
+          }
+        }
+      }
+    },
+    "/marketing/{marketingId}/company/{id}": {
+      "put": {
+        "tags": ["Marketing"],
+        "description": "Update Marketing",
+        "parameters": [
+          {
+            "name": "marketingId",
+            "in": "path",
+            "type": "string",
+            "description": "Marketing Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Company Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              },
+              "required": ["name", "id", "name", "isActive"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Marketing"
+          }
+        }
+      }
+    },
+    "/marketing/{id}": {
+      "delete": {
+        "tags": ["Marketing"],
+        "description": "Delete Maketing",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Marketing Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Maketing"
+          }
+        }
+      }
+    },
+    "/marketing/{marketingId}/syncdata/company/{id}": {
+      "post": {
+        "tags": ["Marketing"],
+        "description": "Sync Data to MailChimp",
+        "parameters": [
+          {
+            "name": "marketingId",
+            "in": "path",
+            "type": "string",
+            "description": "Marketing Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Company Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sync Data to MailChimp"
+          }
+        }
+      }
+    },
+    "/marketing/{id}/customerlist": {
+      "get": {
+        "tags": ["Marketing"],
+        "description": "Get Customer List",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Marketing Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Customer List"
+          }
+        }
+      }
+    },
+
+    "/timeline/outlet/{id}/mealtime": {
+      "post": {
+        "tags": ["Timeline"],
+        "description": "Get MealTime",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get MealTime"
+          }
+        }
+      }
+    },
+    "/timeline/outlet/{id}": {
+      "post": {
+        "tags": ["Timeline"],
+        "description": "Get Timeline",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Timeline"
+          }
+        }
+      }
+    },
+    "/timeline/move/outlet/{id}": {
+      "put": {
+        "tags": ["Timeline"],
+        "description": "Move Reservation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "time": {
+                  "type": "string"
+                },
+                "outletTableBookingId": {
+                  "type": "number"
+                },
+                "toOutleTableId": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "date",
+                "time",
+                "outletTableBookingId",
+                "toOutleTableId"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Move Reservation"
+          }
+        }
+      }
+    },
+
+    "/userpermission/outlet/{outletId}/role/{id}": {
+      "get": {
+        "tags": ["UserPermission"],
+        "description": "Get Permission",
+        "parameters": [
+          {
+            "name": "outletId",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Role id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Permission"
+          }
+        }
+      }
+    },
+    "/userpermission/{userpermissionId}/outlet/{id}": {
+      "put": {
+        "tags": ["UserPermission"],
+        "description": "Update Permission",
+        "parameters": [
+          {
+            "name": "userpermissionId",
+            "in": "path",
+            "type": "string",
+            "description": "UserPermission Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "permission": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "moduleName": {
+                        "type": "string"
+                      },
+                      "isCreate": {
+                        "type": "boolean"
+                      },
+                      "isRead": {
+                        "type": "boolean"
+                      },
+                      "isUpdate ": {
+                        "type": "boolean"
+                      },
+                      "isDelete": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "permission",
+                "moduleName",
+                "isCreate",
+                "isRead",
+                "isUpdate",
+                "isDelete"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Permission"
+          }
+        }
+      }
+    },
+    "/userpermission/allpermission": {
+      "get": {
+        "tags": ["UserPermission"],
+        "description": "Get Modulewise Permission",
+        "responses": {
+          "200": {
+            "description": "Get Modulewise Permission"
+          }
+        }
+      }
+    },
+
+    "/autoTagging/outlet/{id}": {
+      "post": {
+        "tags": ["AutoTagging"],
+        "description": "Update Permission",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "tagId": {
+                  "type": "number"
+                },
+                "criteria": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fieldName": {
+                        "type": "string"
+                      },
+                      "criteria": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "object",
+                        "properties": {
+                          "value1": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "value2": {
+                            "type": "string",
+                            "format": "date"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "permission",
+                "moduleName",
+                "isCreate",
+                "isRead",
+                "isUpdate",
+                "isDelete"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Permission"
+          }
+        }
+      },
+      "get": {
+        "tags": ["AutoTagging"],
+        "description": "Get All Auto Tagging",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Auto Tagging"
+          }
+        }
+      }
+    },
+    "/autoTagging/{autoTaggingId}/outlet/{id}": {
+      "delete": {
+        "tags": ["AutoTagging"],
+        "description": "Delete Auto Tagging",
+        "parameters": [
+          {
+            "name": "autoTaggingId",
+            "in": "path",
+            "type": "string",
+            "description": "AutoTagging Id",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "Outlet Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Auto Tagging"
+          }
+        }
+      }
+    },
+    "/autoTagging/{id}/customerlist": {
+      "get": {
+        "tags": ["AutoTagging"],
+        "description": "Get All Customer List",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "AutoTagging Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Customer List"
+          }
+        }
+      }
+    },
+
+    "/report/reservation": {
+      "post": {
+        "tags": ["Report"],
+        "description": "Reservation Report",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "companyIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "fromDate": {
+                  "type": "number",
+                  "format": "date"
+                },
+                "toDate": {
+                  "type": "number",
+                  "format": "date"
+                },
+                "mealType": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "status": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "filter": {
+                  "type": "string"
+                },
+                "bookingType": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "companyIds",
+                "filter",
+                "mealType",
+                "status",
+                "bookingType"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reservation Report"
+          }
+        }
+      }
+    },
+    "/report/customer": {
+      "post": {
+        "tags": ["Report"],
+        "description": "Customer Report",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "companyIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "fromDate": {
+                  "type": "number",
+                  "format": "date"
+                },
+                "toDate": {
+                  "type": "number",
+                  "format": "date"
+                },
+                "filter": {
+                  "type": "string"
+                }
+              },
+              "required": ["companyIds", "filter"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Customer Report"
+          }
+        }
+      }
+    },
+    "/report/event/group": {
+      "post": {
+        "tags": ["Report"],
+        "description": "Group Event Report",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "companyIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "fromDate": {
+                  "type": "number",
+                  "format": "date"
+                },
+                "toDate": {
+                  "type": "number",
+                  "format": "date"
+                },
+                "mealType": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": ["companyIds", "mealType"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Group Event Report"
+          }
+        }
+      }
+    },
+    "/report/event/single": {
+      "post": {
+        "tags": ["Report"],
+        "description": "Singel Event Report",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "fromDate": {
+                  "type": "number",
+                  "format": "date"
+                },
+                "toDate": {
+                  "type": "number",
+                  "format": "date"
+                },
+                "mealType": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "outletId": {
+                  "type": "number"
+                }
+              },
+              "required": ["mealType", "outletId"]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Singel Event Report"
+          }
+        }
+      }
+    }
+  },
+
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "authorization",
+      "description": "Enter the token with the `Bearer: ` prefix, e.g. Bearer abcde12345  "
+    }
+  },
+
+  "security": [{ "Bearer": [] }]
+}
